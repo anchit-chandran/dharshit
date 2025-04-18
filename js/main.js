@@ -107,8 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const introMusic = new Audio('assets/audio/youre-all-i-want.mp3');
     const finalMusic = new Audio('assets/audio/thinking-out-loud.mp3');
     
-    
-    
     // Handle audio loading errors
     introMusic.onerror = function() {
         console.log('Warning: Intro music could not be loaded.');
@@ -140,10 +138,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Create and play opening music as soon as page loads
+    const openingMusic = new Audio('assets/audio/opening.mp3');
+    openingMusic.volume = 0.5;
+    
+    // Handle audio loading errors
+    openingMusic.onerror = function() {
+        console.log('Warning: Opening music could not be loaded.');
+    };
+    
+    // Try to play opening music immediately
+    safePlayAudio(openingMusic);
+    
     // Start button click handler
     document.getElementById('start-button').addEventListener('click', function() {
         // Remove focus from the start button before navigating to avoid aria-hidden issues
         this.blur();
+        
+        // Stop opening music and start intro music
+        if (openingMusic && !openingMusic.paused) {
+            openingMusic.pause();
+        }
         
         // Try to start music
         safePlayAudio(introMusic);
@@ -446,25 +461,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Handle page visibility changes to pause/resume music
 document.addEventListener('visibilitychange', function() {
+    const openingMusic = document.querySelector('audio[src*="opening"]');
     const introMusic = document.querySelector('audio[src*="thinking-out-loud"]');
     const finalMusic = document.querySelector('audio[src*="youre-all-i-want"]');
     
     if (document.hidden) {
-        // Pause both audio tracks
+        // Pause all audio tracks
+        if (openingMusic && !openingMusic.paused) openingMusic.pause();
         if (introMusic && !introMusic.paused) introMusic.pause();
         if (finalMusic && !finalMusic.paused) finalMusic.pause();
     } else {
         // Resume only the one that was playing
         try {
             const currentSlideIndex = Reveal.getIndices().h;
-            if (currentSlideIndex < 4) {
+            if (currentSlideIndex === 0) {
+                // On the intro slide, play opening music
+                if (openingMusic && !openingMusic.paused) openingMusic.play();
+            } else if (currentSlideIndex < 4) {
                 if (introMusic && !introMusic.paused) introMusic.play();
             } else {
                 if (finalMusic && !finalMusic.paused) finalMusic.play();
             }
         } catch (error) {
             console.warn('Could not get current slide index:', error);
-            // Just try to play both
+            // Just try to play all
+            if (openingMusic && !openingMusic.paused) openingMusic.play();
             if (introMusic && !introMusic.paused) introMusic.play();
             if (finalMusic && !finalMusic.paused) finalMusic.play();
         }
