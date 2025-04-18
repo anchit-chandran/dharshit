@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who Wants to be a Dharshillionaire?</title>
 
+    <!-- Google Fonts - Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- RevealJS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
@@ -29,6 +34,14 @@
     <!-- Global carnation border -->
     <div class="carnation-border"></div>
     <div class="carnation-border-left"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div id="progress-text" class="progress-text">Ready to become a Dharshillionaire?</div>
+    </div>
 
     <div class="reveal">
         <div class="slides">
@@ -67,10 +80,10 @@
                     <div class="options-container">
                         <button class="option" data-correct="false">A. I wish there was a way to know you're in the good
                             old days before you've actually left them.</button>
-                        <button class="option" data-correct="true">B. So, even though you have broken my heart yet
+                        <button class="option" data-correct="false">B. So, even though you have broken my heart yet
                             again, I wanted to say, in another life, I would have really liked just doing laundry and
                             taxes with you</button>
-                        <button class="option" data-correct="false">C. The truth is, I now don't travel back at all, not
+                        <button class="option" data-correct="true>C. The truth is, I now don't travel back at all, not
                             even for the day. I just try to live every day as if I've deliberately come back to this one
                             day, to enjoy it, as if it was the full final day of my extraordinary, ordinary
                             life.</button>

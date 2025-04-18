@@ -51,11 +51,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     newSlide.focus();
                 }
             }, 100);
+
+            // Update progress bar
+            updateProgressBar();
         });
         
         console.log('RevealJS initialized successfully');
     } catch (error) {
         console.error('Failed to initialize RevealJS:', error);
+    }
+
+    // Progress Bar Management
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const totalSlides = document.querySelectorAll('.reveal .slides > section').length;
+    
+    // Initial progress update
+    updateProgressBar();
+    
+    function updateProgressBar() {
+        let currentIndex = 0;
+        
+        try {
+            currentIndex = Reveal.getIndices().h;
+        } catch (error) {
+            // If RevealJS isn't available, find the visible slide
+            const slides = document.querySelectorAll('.reveal .slides > section');
+            slides.forEach((slide, index) => {
+                if (slide.style.display !== 'none') {
+                    currentIndex = index;
+                }
+            });
+        }
+        
+        // Calculate percentage
+        const percentage = (currentIndex / (totalSlides - 1)) * 100;
+        
+        // Update the progress bar fill
+        progressFill.style.width = `${percentage}%`;
+        
+        // Update the progress text with custom money values
+        const moneyValues = [
+            "Ready to become a Dharshillionaire?", 
+            "£100", 
+            "£69696969", 
+            "£800000000854", 
+            "£90843824783294708017489743918",
+            "Dharshillionaire!"
+        ];
+        
+        progressText.textContent = moneyValues[currentIndex];
     }
 
     // Audio elements with error handling
@@ -116,6 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error during navigation:', error);
             // Fallback handled in index.html
         }
+        
+        // Update progress bar after navigation
+        setTimeout(updateProgressBar, 100);
     });
     
     // Track the current question
@@ -166,6 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 100);
                 }
             }
+            
+            // Update progress bar after navigation
+            setTimeout(updateProgressBar, 100);
         } catch (error) {
             console.error('Navigation error:', error);
             // Manual fallback
@@ -180,6 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     nextSlide.focus();
                 }, 100);
+                
+                // Update progress bar after fallback navigation
+                setTimeout(updateProgressBar, 100);
             }
         }
     }
@@ -252,6 +306,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create a popup for "Are you sure"
                 const popup = document.createElement('div');
                 popup.classList.add('are-you-sure-popup');
+                
+                // Make sure the progress bar stays visible
+                const progressContainer = document.querySelector('.progress-container');
+                if (progressContainer) {
+                    // Temporarily increase the z-index of the progress bar to keep it above the popup
+                    const originalZIndex = progressContainer.style.zIndex;
+                    progressContainer.style.zIndex = "10000";
+                }
+                
                 popup.innerHTML = `
                     <div class="popup-content">
                         <h3>Are you sure?</h3>
@@ -271,6 +334,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Reset the button state
                     button.classList.remove('incorrect');
+                    
+                    // Restore the original z-index of the progress bar
+                    if (progressContainer) {
+                        progressContainer.style.zIndex = originalZIndex || "1000";
+                    }
                 });
             }
         });
@@ -326,6 +394,14 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 yesButton.style.transform = "scale(1.0)";
             }, 500);
+            
+            // Set progress bar to 100% complete
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            if (progressFill && progressText) {
+                progressFill.style.width = "100%";
+                progressText.textContent = "Dharshillionaire!";
+            }
             
             // Remove focus after click
             setTimeout(() => this.blur(), 10);
