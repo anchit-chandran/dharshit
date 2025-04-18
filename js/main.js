@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             progress: true,
             center: true,
             hash: false,
-            transition: 'zoom',
+            transition: 'zoom', // Use zoom transition
             backgroundTransition: 'fade',
             mouseWheel: false,
             // Keep keyboard navigation enabled but customize
@@ -22,7 +22,35 @@ document.addEventListener('DOMContentLoaded', function() {
             // Prevent auto-sliding
             autoSlide: 0,
             // No plugins for now to avoid ES module issues
-            plugins: []
+            plugins: [],
+            // Add focus management to fix aria-hidden accessibility issues
+            disableLayout: false,
+            navigationMode: 'default',
+            embedded: false,
+            // Configure accessibility options
+            a11y: {
+                help: {
+                    title: 'Help',
+                    contents: 'Press arrow keys to navigate slides'
+                }
+            }
+        });
+        
+        // Add event listener to manage focus on slide change
+        Reveal.on('slidechanged', function(event) {
+            // Remove focus from any elements in the hidden slide
+            document.activeElement.blur();
+            
+            // Delay focus management to ensure DOM updates are complete
+            setTimeout(function() {
+                // Focus on the first focusable element in new slide if needed
+                const newSlide = event.currentSlide;
+                if (newSlide) {
+                    // Start by focusing on the slide container itself for accessibility
+                    newSlide.setAttribute('tabindex', '-1');
+                    newSlide.focus();
+                }
+            }, 100);
         });
         
         console.log('RevealJS initialized successfully');
@@ -31,8 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Audio elements with error handling
-    const introMusic = new Audio('assets/audio/thinking-out-loud.mp3');
-    const finalMusic = new Audio('assets/audio/youre-all-i-want.mp3');
+    const introMusic = new Audio('assets/audio/youre-all-i-want.mp3');
+    const finalMusic = new Audio('assets/audio/thinking-out-loud.mp3');
+    
+    
     
     // Handle audio loading errors
     introMusic.onerror = function() {
@@ -67,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start button click handler
     document.getElementById('start-button').addEventListener('click', function() {
+        // Remove focus from the start button before navigating to avoid aria-hidden issues
+        this.blur();
+        
         // Try to start music
         safePlayAudio(introMusic);
         
@@ -90,6 +123,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Define a function for safe navigation
     function safeNavigateNext() {
+        // First remove focus from any active element to prevent aria-hidden issues
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
+        
         try {
             if (typeof Reveal.next === 'function') {
                 Reveal.next();
@@ -108,8 +146,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 if (currentIndex >= 0 && currentIndex < allSlides.length - 1) {
+                    // Before hiding current slide, ensure focus is removed
                     currentSlide.style.display = 'none';
                     allSlides[currentIndex + 1].style.display = 'block';
+                    
+                    // Make the next slide focusable for accessibility
+                    allSlides[currentIndex + 1].setAttribute('tabindex', '-1');
+                    // If needed, focus on the slide after a brief delay
+                    setTimeout(() => {
+                        allSlides[currentIndex + 1].focus();
+                    }, 100);
                 }
             }
         } catch (error) {
@@ -120,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nextSlide) {
                 currentSlide.style.display = 'none';
                 nextSlide.style.display = 'block';
+                
+                // Add focus management to fallback too
+                nextSlide.setAttribute('tabindex', '-1');
+                setTimeout(() => {
+                    nextSlide.focus();
+                }, 100);
             }
         }
     }
@@ -127,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click handlers to all option buttons
     document.querySelectorAll('.option').forEach(function(button) {
         button.addEventListener('click', function() {
+            // Remove focus from button immediately to prevent aria-hidden issues
+            this.blur();
+            
             const isCorrect = button.getAttribute('data-correct') === 'true';
             
             if (isCorrect) {
@@ -165,6 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Add event listener to the try again button
                 popup.querySelector('.try-again-btn').addEventListener('click', function() {
+                    // Remove focus from this button too
+                    this.blur();
+                    
                     // Remove the popup
                     document.body.removeChild(popup);
                     
@@ -184,13 +242,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (noButton) {
         noButton.addEventListener('mouseover', function(e) {
             // Calculate new position
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            const x = Math.random() * (window.innerWidth - 400);
+            const y = Math.random() * (window.innerHeight - 400);
             
             // Set new position
             noButton.style.position = 'absolute';
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
+        });
+        
+        noButton.addEventListener('blur', function() {
+            // If the no button is moving, ensure focus is properly managed
+            if (this.style.position === 'absolute') {
+                this.blur();
+            }
         });
     }
     
@@ -218,6 +283,9 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 yesButton.style.transform = "scale(1.0)";
             }, 500);
+            
+            // Remove focus after click
+            setTimeout(() => this.blur(), 10);
         });
     }
     

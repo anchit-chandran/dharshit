@@ -26,13 +26,15 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/plugin.js"></script> -->
 </head>
 <body>
+    <!-- Global carnation border -->
+    <div class="carnation-border"></div>
+    <div class="carnation-border-left"></div>
+    
     <div class="reveal">
         <div class="slides">
             <!-- Intro Slide -->
             <section id="intro" class="intro-slide">
-                <h1>Who Wants to be a Dharshillionaire?</h1>
-                <div class="carnation-border"></div>
-                <p class="subtitle">A special journey awaits...</p>
+                <h1>Who Wants to be a <br>✨ Dharshillionaire ✨?</h1>
                 <button id="start-button" class="start-btn">Let's Begin</button>
             </section>
             
@@ -103,7 +105,7 @@
                     <button id="no-button" class="no-btn">No</button>
                 </div>
                 <div id="celebration" class="celebration" style="display: none;">
-                    <h3>❤️ Dharshillionaire Status Achieved! ❤️</h3>
+                    <h3>❤️ You're a Dharshillionaire! ❤️</h3>
                 </div>
             </section>
         </div>
@@ -129,7 +131,7 @@
                             const slides = document.querySelectorAll('.reveal .slides > section');
                             if (slides.length > 1) {
                                 slides[0].style.display = 'none';
-                                slides[1].style.display = 'block';
+                                slides[1].style.display = 'flex';
                                 console.log('Manual navigation used');
                             }
                         }
@@ -138,7 +140,7 @@
                         const slides = document.querySelectorAll('.reveal .slides > section');
                         if (slides.length > 1) {
                             slides[0].style.display = 'none';
-                            slides[1].style.display = 'block';
+                            slides[1].style.display = 'flex';
                         }
                     }
                 });

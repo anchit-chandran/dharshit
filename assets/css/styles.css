@@ -22,21 +22,18 @@ body {
     font-size: 14px;
 }
 
+/* Make all slide sections take up 85vh */
+.reveal .slides > section {
+    height: 70vh;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2vh 0;
+}
+
 .reveal h1, .reveal h2, .reveal h3 {
     color: var(--maroon);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.reveal h1 {
-    font-size: 1.5em !important;
-}
-
-.reveal h2 {
-    font-size: 1.8em !important;
-}
-
-.reveal h3 {
-    font-size: 1.3em !important;
 }
 
 /* For manual navigation - hide all slides except the first one */
@@ -45,35 +42,61 @@ body {
 }
 
 .reveal .slides > section:first-child {
-    display: block;
+    display: flex !important;
+}
+
+/* Global Carnation Border */
+.carnation-border {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-image: url('../images/carnation-border.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 28rem;
+    width: 28rem;
+    opacity: 0.9;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.carnation-border-left {
+    position: fixed;
+    bottom: 0;
+    left: -153.9px;
+    background-image: url('../images/carnation-border.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    height: 28rem;
+    width: 28rem;
+    opacity: 0.9;
+    z-index: 1000;
+    pointer-events: none;
+    transform: scaleX(-1); /* Reverse the image horizontally */
 }
 
 /* Intro Slide */
 .intro-slide {
     text-align: center;
     background: radial-gradient(circle, var(--black) 0%, var(--maroon-dark) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .intro-slide h1 {
     margin-bottom: 0.2em !important;
     color: var(--gold) !important;
+    font-size: 3.5em !important;
 }
 
 .subtitle {
     font-size: 1.2em;
     color: var(--cream);
     margin-bottom: 2em;
-}
-
-.carnation-border {
-    background-image: url('../images/carnation-border.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50px;
-    margin: 15px auto;
-    width: 80%;
-    opacity: 0.8;
 }
 
 .start-btn {
@@ -106,7 +129,12 @@ body {
     padding: 15px;
     margin: 15px auto;
     max-width: 700px;
+    width: 80%;
     border: 2px solid var(--maroon);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .question-text {
@@ -155,6 +183,10 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .carnation-decoration {
