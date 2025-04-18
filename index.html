@@ -17,6 +17,13 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- RevealJS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    
+    <!-- Removing problematic plugin imports -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/zoom/plugin.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/plugin.js"></script> -->
 </head>
 <body>
     <div class="reveal">
@@ -102,11 +109,42 @@
         </div>
     </div>
     
-    <!-- RevealJS Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
-    
     <!-- Custom Scripts -->
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/placeholder.js"></script>
+    <script src="js/debug.js"></script>
+    
+    <!-- Fallback navigation controls in case RevealJS init fails -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add manual navigation as a fallback
+        setTimeout(function() {
+            const startButton = document.getElementById('start-button');
+            if (startButton) {
+                startButton.addEventListener('click', function(e) {
+                    // If Reveal is not properly initialized, do manual navigation
+                    try {
+                        if (typeof Reveal.next !== 'function') {
+                            const slides = document.querySelectorAll('.reveal .slides > section');
+                            if (slides.length > 1) {
+                                slides[0].style.display = 'none';
+                                slides[1].style.display = 'block';
+                                console.log('Manual navigation used');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('RevealJS not initialized properly, using fallback navigation.');
+                        const slides = document.querySelectorAll('.reveal .slides > section');
+                        if (slides.length > 1) {
+                            slides[0].style.display = 'none';
+                            slides[1].style.display = 'block';
+                        }
+                    }
+                });
+            }
+        }, 1000);
+    });
+    </script>
 </body>
 </html> 

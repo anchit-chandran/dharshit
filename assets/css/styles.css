@@ -1,8 +1,8 @@
 /* Main Theme Colors */
 :root {
-    --maroon: #800000;
-    --maroon-light: #a02020;
-    --maroon-dark: #600000;
+    --maroon: #5B0A04;
+    --maroon-light: #7B1A14;
+    --maroon-dark: #3B0704;
     --white: #fff;
     --cream: #f8f8f0;
     --gold: #ffd700;
@@ -14,15 +14,38 @@ body {
     background-color: var(--black);
     color: var(--white);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
 }
 
 .reveal {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
 }
 
 .reveal h1, .reveal h2, .reveal h3 {
     color: var(--maroon);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.reveal h1 {
+    font-size: 1.5em !important;
+}
+
+.reveal h2 {
+    font-size: 1.8em !important;
+}
+
+.reveal h3 {
+    font-size: 1.3em !important;
+}
+
+/* For manual navigation - hide all slides except the first one */
+.reveal .slides > section:not(:first-child) {
+    display: none;
+}
+
+.reveal .slides > section:first-child {
+    display: block;
 }
 
 /* Intro Slide */
@@ -32,13 +55,12 @@ body {
 }
 
 .intro-slide h1 {
-    font-size: 3.5em !important;
     margin-bottom: 0.2em !important;
     color: var(--gold) !important;
 }
 
 .subtitle {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: var(--cream);
     margin-bottom: 2em;
 }
@@ -48,8 +70,8 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 60px;
-    margin: 20px auto;
+    height: 50px;
+    margin: 15px auto;
     width: 80%;
     opacity: 0.8;
 }
@@ -58,8 +80,8 @@ body {
     background-color: var(--maroon);
     color: var(--white);
     border: 2px solid var(--gold);
-    padding: 15px 30px;
-    font-size: 1.2em;
+    padding: 12px 25px;
+    font-size: 1em;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -75,38 +97,38 @@ body {
 .question-slide {
     background: linear-gradient(135deg, var(--black) 0%, var(--maroon-dark) 100%);
     text-align: center;
-    padding: 20px;
+    padding: 15px;
 }
 
 .question-container {
     background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 800px;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 700px;
     border: 2px solid var(--maroon);
 }
 
 .question-text {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: var(--white);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .options-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 .option {
     background-color: var(--maroon-dark);
     color: var(--white);
     border: 1px solid var(--maroon-light);
-    padding: 15px;
-    font-size: 1.1em;
-    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.9em;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: left;
@@ -140,8 +162,8 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100px;
-    margin: 10px auto;
+    height: 80px;
+    margin: 8px auto;
     width: 100%;
     opacity: 0.8;
 }
@@ -157,26 +179,26 @@ body {
 }
 
 .big-question {
-    font-size: 2.5em;
+    font-size: 2em;
     color: var(--gold);
-    margin: 30px 0;
+    margin: 25px 0;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .answer-buttons {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+    gap: 30px;
+    margin-top: 25px;
 }
 
 .yes-btn {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 20px 40px;
-    font-size: 1.5em;
-    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.3em;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -185,9 +207,9 @@ body {
     background-color: #f44336;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 10px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -198,7 +220,7 @@ body {
 }
 
 .celebration {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 /* Responsive Adjustments */
@@ -208,20 +230,66 @@ body {
     }
     
     .intro-slide h1 {
-        font-size: 2.5em !important;
+        font-size: 2em !important;
     }
     
     .big-question {
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     
     .yes-btn {
-        padding: 15px 30px;
-        font-size: 1.2em;
+        padding: 12px 25px;
+        font-size: 1.1em;
     }
     
     .no-btn {
-        padding: 8px 15px;
-        font-size: 0.9em;
+        padding: 6px 12px;
+        font-size: 0.8em;
     }
+}
+
+/* Are You Sure Popup */
+.are-you-sure-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: var(--maroon-dark);
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    text-align: center;
+    max-width: 350px;
+}
+
+.popup-content h3 {
+    color: var(--gold) !important;
+    margin-top: 0;
+    font-size: 1.2em !important;
+}
+
+.try-again-btn {
+    background-color: var(--gold);
+    color: var(--maroon-dark);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.try-again-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 } 
