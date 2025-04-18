@@ -353,8 +353,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (noButton) {
         noButton.addEventListener('mouseover', function(e) {
             // Calculate new position
-            const x = Math.random() * (window.innerWidth - 400);
-            const y = Math.random() * (window.innerHeight - 400);
+            const x = Math.random() * (window.innerWidth - 500);
+            const y = Math.random() * (window.innerHeight - 500);
             
             // Set new position
             noButton.style.position = 'absolute';
