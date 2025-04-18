@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Wants to be a Dharshillionaire?</title>
+    
+    <!-- RevealJS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Intro Slide -->
+            <section id="intro" class="intro-slide">
+                <h1>Who Wants to be a Dharshillionaire?</h1>
+                <div class="carnation-border"></div>
+                <p class="subtitle">A special journey awaits...</p>
+                <button id="start-button" class="start-btn">Let's Begin</button>
+            </section>
+            
+            <!-- Question 1 -->
+            <section id="question1" class="question-slide">
+                <h2>Question 1</h2>
+                <div class="question-container">
+                    <p class="question-text">[Memory or inside joke 1]</p>
+                    <div class="options-container">
+                        <button class="option" data-correct="true">A. [Correct answer]</button>
+                        <button class="option" data-correct="false">B. [Wrong answer]</button>
+                        <button class="option" data-correct="false">C. [Wrong answer]</button>
+                        <button class="option" data-correct="false">D. [Wrong answer]</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 2 -->
+            <section id="question2" class="question-slide">
+                <h2>Question 2</h2>
+                <div class="question-container">
+                    <p class="question-text">[Memory or inside joke 2]</p>
+                    <div class="options-container">
+                        <button class="option" data-correct="true">A. [Correct answer]</button>
+                        <button class="option" data-correct="false">B. [Wrong answer]</button>
+                        <button class="option" data-correct="false">C. [Wrong answer]</button>
+                        <button class="option" data-correct="false">D. [Wrong answer]</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 3 -->
+            <section id="question3" class="question-slide">
+                <h2>Question 3</h2>
+                <div class="question-container">
+                    <p class="question-text">[Memory or inside joke 3]</p>
+                    <div class="options-container">
+                        <button class="option" data-correct="true">A. [Correct answer]</button>
+                        <button class="option" data-correct="false">B. [Wrong answer]</button>
+                        <button class="option" data-correct="false">C. [Wrong answer]</button>
+                        <button class="option" data-correct="false">D. [Wrong answer]</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question 4 -->
+            <section id="question4" class="question-slide">
+                <h2>Question 4</h2>
+                <div class="question-container">
+                    <p class="question-text">[Memory or inside joke 4]</p>
+                    <div class="options-container">
+                        <button class="option" data-correct="true">A. [Correct answer]</button>
+                        <button class="option" data-correct="false">B. [Wrong answer]</button>
+                        <button class="option" data-correct="false">C. [Wrong answer]</button>
+                        <button class="option" data-correct="false">D. [Wrong answer]</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Final Slide -->
+            <section id="final" class="final-slide">
+                <div id="glitter-container" class="glitter-container"></div>
+                <div class="carnation-decoration"></div>
+                <h2>Congratulations!</h2>
+                <p class="big-question">Will you be my girlfriend?</p>
+                <div class="answer-buttons">
+                    <button id="yes-button" class="yes-btn">Yes</button>
+                    <button id="no-button" class="no-btn">No</button>
+                </div>
+                <div id="celebration" class="celebration" style="display: none;">
+                    <h3>❤️ Dharshillionaire Status Achieved! ❤️</h3>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- RevealJS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html> 

@@ -1,0 +1,227 @@
+/* Main Theme Colors */
+:root {
+    --maroon: #800000;
+    --maroon-light: #a02020;
+    --maroon-dark: #600000;
+    --white: #fff;
+    --cream: #f8f8f0;
+    --gold: #ffd700;
+    --black: #000;
+}
+
+/* Global Styles */
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reveal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+    color: var(--maroon);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Intro Slide */
+.intro-slide {
+    text-align: center;
+    background: radial-gradient(circle, var(--black) 0%, var(--maroon-dark) 100%);
+}
+
+.intro-slide h1 {
+    font-size: 3.5em !important;
+    margin-bottom: 0.2em !important;
+    color: var(--gold) !important;
+}
+
+.subtitle {
+    font-size: 1.5em;
+    color: var(--cream);
+    margin-bottom: 2em;
+}
+
+.carnation-border {
+    background-image: url('../images/carnation-border.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60px;
+    margin: 20px auto;
+    width: 80%;
+    opacity: 0.8;
+}
+
+.start-btn {
+    background-color: var(--maroon);
+    color: var(--white);
+    border: 2px solid var(--gold);
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: var(--maroon-light);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Question Slides */
+.question-slide {
+    background: linear-gradient(135deg, var(--black) 0%, var(--maroon-dark) 100%);
+    text-align: center;
+    padding: 20px;
+}
+
+.question-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border: 2px solid var(--maroon);
+}
+
+.question-text {
+    font-size: 1.4em;
+    color: var(--white);
+    margin-bottom: 30px;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option {
+    background-color: var(--maroon-dark);
+    color: var(--white);
+    border: 1px solid var(--maroon-light);
+    padding: 15px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.option:hover {
+    background-color: var(--maroon);
+    transform: translateY(-2px);
+}
+
+.option.correct {
+    background-color: #2e7d32;
+    border-color: #4caf50;
+}
+
+.option.incorrect {
+    background-color: #c62828;
+    border-color: #f44336;
+}
+
+/* Final Slide */
+.final-slide {
+    background: radial-gradient(circle, var(--maroon-dark) 0%, var(--black) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carnation-decoration {
+    background-image: url('../images/carnation-decoration.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+    margin: 10px auto;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.glitter-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.big-question {
+    font-size: 2.5em;
+    color: var(--gold);
+    margin: 30px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.yes-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.no-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+.celebration {
+    margin-top: 30px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .intro-slide h1 {
+        font-size: 2.5em !important;
+    }
+    
+    .big-question {
+        font-size: 1.8em;
+    }
+    
+    .yes-btn {
+        padding: 15px 30px;
+        font-size: 1.2em;
+    }
+    
+    .no-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+} 
