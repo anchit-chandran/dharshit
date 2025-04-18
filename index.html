@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who Wants to be a Dharshillionaire?</title>
-    
+
     <!-- RevealJS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
-    
+
     <!-- Custom styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
-    
+
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    
+
     <!-- RevealJS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
-    
-    <!-- Removing problematic plugin imports -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/zoom/plugin.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/plugin.js"></script> -->
+
+
 </head>
+
 <body>
     <!-- Global carnation border -->
     <div class="carnation-border"></div>
     <div class="carnation-border-left"></div>
-    
+
     <div class="reveal">
         <div class="slides">
             <!-- Intro Slide -->
@@ -37,21 +37,25 @@
                 <h1>Who Wants to be a <br>✨ Dharshillionaire ✨?</h1>
                 <button id="start-button" class="start-btn">Let's Begin</button>
             </section>
-            
+
             <!-- Question 1 -->
             <section id="question1" class="question-slide">
                 <h2>Question 1</h2>
                 <div class="question-container">
-                    <p class="question-text">[Memory or inside joke 1]</p>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.642802764241!2d-0.1799234!3d51.519768899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761bff4f4ecaed%3A0xebcbd1a38abd4b5b!2sVagabond%20Paddington!5e0!3m2!1sen!2suk!4v1744972080269!5m2!1sen!2suk"
+                        width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <p class="question-text">The first time I saw you was in Vagabond, Paddington. How stunningly, beautifully, hot did I think you were?</p>
                     <div class="options-container">
-                        <button class="option" data-correct="true">A. [Correct answer]</button>
-                        <button class="option" data-correct="false">B. [Wrong answer]</button>
-                        <button class="option" data-correct="false">C. [Wrong answer]</button>
-                        <button class="option" data-correct="false">D. [Wrong answer]</button>
+                        <button class="option" data-correct="true">A. Graham's Number</button>
+                        <button class="option" data-correct="false">B. 4</button>
+                        <button class="option" data-correct="false">C. all the ways you could choose a set from the numbers between 0 and 1</button>
+                        <button class="option" data-correct="false">D. 1 billion</button>
                     </div>
                 </div>
             </section>
-            
+
             <!-- Question 2 -->
             <section id="question2" class="question-slide">
                 <h2>Question 2</h2>
@@ -65,7 +69,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- Question 3 -->
             <section id="question3" class="question-slide">
                 <h2>Question 3</h2>
@@ -79,7 +83,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- Question 4 -->
             <section id="question4" class="question-slide">
                 <h2>Question 4</h2>
@@ -93,7 +97,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- Final Slide -->
             <section id="final" class="final-slide">
                 <div id="glitter-container" class="glitter-container"></div>
@@ -110,43 +114,43 @@
             </section>
         </div>
     </div>
-    
+
     <!-- Custom Scripts -->
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/placeholder.js"></script>
-    <script src="js/debug.js"></script>
-    
+
     <!-- Fallback navigation controls in case RevealJS init fails -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add manual navigation as a fallback
-        setTimeout(function() {
-            const startButton = document.getElementById('start-button');
-            if (startButton) {
-                startButton.addEventListener('click', function(e) {
-                    // If Reveal is not properly initialized, do manual navigation
-                    try {
-                        if (typeof Reveal.next !== 'function') {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add manual navigation as a fallback
+            setTimeout(function () {
+                const startButton = document.getElementById('start-button');
+                if (startButton) {
+                    startButton.addEventListener('click', function (e) {
+                        // If Reveal is not properly initialized, do manual navigation
+                        try {
+                            if (typeof Reveal.next !== 'function') {
+                                const slides = document.querySelectorAll('.reveal .slides > section');
+                                if (slides.length > 1) {
+                                    slides[0].style.display = 'none';
+                                    slides[1].style.display = 'flex';
+                                    console.log('Manual navigation used');
+                                }
+                            }
+                        } catch (error) {
+                            console.error('RevealJS not initialized properly, using fallback navigation.');
                             const slides = document.querySelectorAll('.reveal .slides > section');
                             if (slides.length > 1) {
                                 slides[0].style.display = 'none';
                                 slides[1].style.display = 'flex';
-                                console.log('Manual navigation used');
                             }
                         }
-                    } catch (error) {
-                        console.error('RevealJS not initialized properly, using fallback navigation.');
-                        const slides = document.querySelectorAll('.reveal .slides > section');
-                        if (slides.length > 1) {
-                            slides[0].style.display = 'none';
-                            slides[1].style.display = 'flex';
-                        }
-                    }
-                });
-            }
-        }, 1000);
-    });
+                    });
+                }
+            }, 1000);
+        });
     </script>
 </body>
-</html> 
+
+</html>
