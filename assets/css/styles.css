@@ -325,4 +325,48 @@ body {
 .try-again-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.imgs-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.imgs-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--maroon-light);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.imgs-container img:hover {
+    transform: scale(1.05);
+    border-color: var(--gold);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive adjustments for images */
+@media (max-width: 768px) {
+    .imgs-container img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .imgs-container {
+        gap: 10px;
+    }
+    
+    .imgs-container img {
+        width: 100px;
+        height: 100px;
+    }
 } 

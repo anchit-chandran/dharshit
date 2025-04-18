@@ -121,6 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Track the current question
     let currentQuestion = 1;
     
+    // For Question 3, track which options have been selected
+    const question3SelectedOptions = {
+        'A': false,
+        'B': false,
+        'C': false,
+        'D': false
+    };
+    
     // Define a function for safe navigation
     function safeNavigateNext() {
         // First remove focus from any active element to prevent aria-hidden issues
@@ -184,11 +192,46 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const isCorrect = button.getAttribute('data-correct') === 'true';
             
+            // Check if we're on Question 3 (index starts at 0, so question3 is at index 2)
+            let isQuestion3 = false;
+            try {
+                const currentSlideIndex = Reveal.getIndices().h;
+                isQuestion3 = currentSlideIndex === 3; // Third slide (index 2) is Question 3
+            } catch (error) {
+                // Fallback if Reveal isn't available
+                // Check if this button is inside question3 section
+                isQuestion3 = button.closest('#question3') !== null;
+            }
+            
             if (isCorrect) {
                 // Highlight the correct answer
                 button.classList.add('correct');
                 
-                // Wait a moment before moving to the next slide
+                // If we're on Question 3, track the selected option and check if all options are selected
+                if (isQuestion3) {
+                    // Get the option letter from the button text (assumes format "A. Option text")
+                    const optionLetter = button.textContent.trim()[0];
+                    question3SelectedOptions[optionLetter] = true;
+                    
+                    // Disable the button so it can't be clicked again
+                    button.disabled = true;
+                    
+                    // Check if all options have been selected for Question 3
+                    const allSelected = Object.values(question3SelectedOptions).every(val => val === true);
+                    
+                    if (allSelected) {
+                        // If all options are selected, proceed to next question after delay
+                        setTimeout(function() {
+                            currentQuestion++;
+                            safeNavigateNext();
+                        }, 1000);
+                    }
+                    
+                    // If not all options are selected yet, don't proceed
+                    return;
+                }
+                
+                // For all other questions, proceed normally
                 setTimeout(function() {
                     currentQuestion++;
                     
